@@ -7,9 +7,23 @@ function getRandomHexColor() {
 const createBtnEl = document.querySelector("[data-create]");
 const clearBtnEl = document.querySelector("[data-destroy]");
 const valueCountEl = document.querySelector("#controls input");
+const divContainerEl = document.querySelector("#boxes");
+
+divContainerEl.style.listStyle = "none";
+divContainerEl.style.display = "flex";
+divContainerEl.style.flexWrap = "wrap";
+divContainerEl.style.gap = "40px 20px";
+divContainerEl.style.justifyContent = "space-between";
 
 createBtnEl.addEventListener("click", () => {
-  if (document.body.querySelector(".div-list")) {
+  if (
+    Number(valueCountEl.value) > Number(valueCountEl.max) ||
+    Number(valueCountEl.value) < Number(valueCountEl.min)
+  ) {
+    alert("Please, enter a valid value");
+    return;
+  }
+  if (document.body.querySelector(".div-item")) {
     destroyBoxes();
   }
 
@@ -21,30 +35,24 @@ clearBtnEl.addEventListener("click", destroyBoxes);
 function createBoxes(amount) {
   amount = Number(valueCountEl.value);
   valueCountEl.value = "";
-  const divListEl = document.createElement("ul");
-  divListEl.classList.add("div-list");
-  divListEl.style.listStyle = "none";
-  divListEl.style.display = "flex";
-  divListEl.style.flexWrap = "wrap";
-  divListEl.style.gap = "40px 20px";
-  divListEl.style.justifyContent = "space-between";
 
   const divArrayEl = [];
   for (let i = 0; i < amount; i += 1) {
-    const divListItem = document.createElement("li");
     divArrayEl[i] = document.createElement("div");
+    divArrayEl[i].classList.add("div-item");
     divArrayEl[i].style.width = `${30 + i * 10}px`;
     divArrayEl[i].style.height = `${30 + i * 10}px`;
     divArrayEl[i].style.backgroundColor = getRandomHexColor();
 
-    divListItem.append(divArrayEl[i]);
-    divListEl.append(divListItem);
+    divArrayEl.push(divArrayEl[i]);
   }
 
-  document.body.append(divListEl);
+  divContainerEl.append(...divArrayEl);
 }
 
 function destroyBoxes() {
-  const divListEl = document.body.querySelector(".div-list");
-  divListEl.remove();
+  const divItemsEl = document.body.querySelectorAll(".div-item");
+  divItemsEl.forEach((element) => {
+    element.remove();
+  });
 }
