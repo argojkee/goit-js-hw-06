@@ -4,11 +4,16 @@ formEl.addEventListener("submit", onFormSubmit);
 
 function onFormSubmit(event) {
   event.preventDefault();
-  const formTargetEl = event.currentTarget;
+
+  const formTargetEl = event.currentTarget.elements;
+  const email = formTargetEl.email.value;
+  const password = formTargetEl.password.value;
+
   const newUser = {
-    email: formTargetEl.email.value,
-    password: formTargetEl.password.value,
+    email,
+    password,
   };
+
   if (newUser.email && newUser.password) {
     console.log(newUser);
     formEl.reset();
