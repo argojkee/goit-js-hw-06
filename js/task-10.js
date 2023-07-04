@@ -32,8 +32,8 @@
 
 // clearBtnEl.addEventListener("click", destroyBoxes);
 
-// function createBoxes(amount) {
-//   amount = Number(valueCountEl.value);
+// function createBoxes(amount = Number(valueCountEl.value)) {
+//   ;
 //   valueCountEl.value = "";
 
 //   const divArrayEl = [];
@@ -88,8 +88,7 @@ createBtnEl.addEventListener("click", () => {
 
 clearBtnEl.addEventListener("click", destroyBoxes);
 
-function createBoxes() {
-  const amount = Number(valueCountEl.value);
+function createBoxes(amount = Number(valueCountEl.value)) {
   valueCountEl.value = "";
 
   let divStringEl = "";
