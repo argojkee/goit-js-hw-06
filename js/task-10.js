@@ -68,9 +68,8 @@ const divContainerEl = document.querySelector("#boxes");
 
 divContainerEl.style.listStyle = "none";
 divContainerEl.style.display = "flex";
-divContainerEl.style.flexWrap = "wrap";
-divContainerEl.style.gap = "40px 20px";
-divContainerEl.style.justifyContent = "space-between";
+divContainerEl.style.flexDirection = "column";
+divContainerEl.style.rowGap = "5px";
 
 createBtnEl.addEventListener("click", () => {
   if (
@@ -79,9 +78,6 @@ createBtnEl.addEventListener("click", () => {
   ) {
     alert("Please, enter a valid value");
     return;
-  }
-  if (document.body.querySelector(".div-item")) {
-    destroyBoxes();
   }
   createBoxes();
 });
@@ -92,12 +88,13 @@ function createBoxes(amount = Number(valueCountEl.value)) {
   valueCountEl.value = "";
 
   let divStringEl = "";
+  const stepEl = Number(valueCountEl.step);
 
   for (let i = 0; i < amount; i += 1) {
     divStringEl += `<div class="div-item" style='width: ${
-      30 + i * 10
+      30 + i * 10 * stepEl
     }px; height: ${
-      30 + i * 10
+      30 + i * 10 * stepEl
     }px; background-color: ${getRandomHexColor()}'></div>`;
   }
 

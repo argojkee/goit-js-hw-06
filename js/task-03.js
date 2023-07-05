@@ -32,7 +32,7 @@ galleryListEl.style.margin = "0px auto";
 // galleryListEl.insertAdjacentHTML("beforeend", fullItemsEl);
 
 const makeItemMarkup = ({ alt, url }) =>
-  `<li><img src='${url}' alt='${alt}' width='200' height='200' </li>`;
+  `<li><img src='${url}' alt='${alt}' width='300' </li>`;
 
 const arrayItemsEl = images.map(makeItemMarkup);
-galleryListEl.insertAdjacentHTML("beforeend", arrayItemsEl.join());
+galleryListEl.insertAdjacentHTML("beforeend", arrayItemsEl.join(""));

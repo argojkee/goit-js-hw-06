@@ -2,11 +2,10 @@ const inputNameEl = document.querySelector("#name-input");
 const labelNameEl = document.querySelector("#name-output");
 
 function changeTextContent(event) {
-  if (event.currentTarget.value === "") {
-    labelNameEl.textContent = "Anonymous";
-  } else {
-    labelNameEl.textContent = event.currentTarget.value;
-  }
+  labelNameEl.textContent =
+    event.currentTarget.value.trim() === ""
+      ? "Anonymous"
+      : event.currentTarget.value.trim();
 }
 
 inputNameEl.addEventListener("input", changeTextContent);

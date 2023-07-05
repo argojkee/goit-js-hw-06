@@ -2,10 +2,7 @@ const changeColorBtnEl = document.querySelector(".change-color");
 const bodyEl = document.querySelector("body");
 const textColorEl = document.querySelector(".color");
 
-changeColorBtnEl.addEventListener("click", () => {
-  onChangeColor();
-  changeTextColorContent();
-});
+changeColorBtnEl.addEventListener("click", onChangeColor);
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
@@ -14,9 +11,7 @@ function getRandomHexColor() {
 }
 
 function onChangeColor() {
-  bodyEl.style.backgroundColor = getRandomHexColor();
-}
-
-function changeTextColorContent() {
-  textColorEl.textContent = bodyEl.style.backgroundColor;
+  const currentColor = getRandomHexColor();
+  bodyEl.style.backgroundColor = currentColor;
+  textColorEl.textContent = currentColor;
 }
