@@ -4,7 +4,12 @@ const categoriesItemsEl = categoriesListEl.children;
 
 console.log(`Number of categories: `, categoriesItemsEl.length);
 
-for (const item of categoriesItemsEl) {
+// for (const item of categoriesItemsEl) {
+//   console.log(`Category: `, item.firstElementChild.textContent);
+//   console.log(`Elements: `, item.lastElementChild.children.length);
+// }
+
+Object.values(categoriesItemsEl).forEach((item) => {
   console.log(`Category: `, item.firstElementChild.textContent);
   console.log(`Elements: `, item.lastElementChild.children.length);
-}
+});
